@@ -1,0 +1,45 @@
+# Fichiers de build et objets
+build/
+lib/
+*.o
+*.a
+*.so
+*.so.*
+
+# Fichiers de debug
+*.log
+core
+vgcore.*
+gmon.out
+
+# Fichiers de coverage
+*.gcov
+*.gcda
+*.gcno
+*.info
+coverage.info
+
+# Documentation générée
+docs/html/
+docs/latex/
+docs/man/
+
+# Fichiers temporaires
+*~
+*.swp
+*.swo
+.DS_Store
+
+# Fichiers d'IDE
+.vscode/
+.idea/
+*.cbp
+*.layout
+
+# Fichiers de test
+test_results/
+*.xml
+
+# Fichiers de profiling
+*.prof
+*.gprof

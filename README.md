@@ -1,0 +1,311 @@
+# Custom Memory Allocator - MemAlloc
+
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
+[![License](https://img.shields.io/badge/license-MIT-blue)]()
+[![Version](https://img.shields.io/badge/version-1.0.0-blue)]()
+
+Un gestionnaire de mémoire personnalisé implémenté en C pur, offrant des fonctionnalités avancées de gestion mémoire, détection de fuites, et analyse de fragmentation.
+
+## 🎯 Objectifs du Projet
+
+Ce projet implémente un gestionnaire de mémoire complet avec :
+
+- **Allocation personnalisée** : Implémentation de `malloc()` et `free()` 
+- **Gestion des fuites** : Détection et rapport des fuites mémoire
+- **Défragmentation** : Algorithmes de réduction de la fragmentation
+- **Analyse statistique** : Collecte détaillée de métriques d'utilisation
+- **Debug avancé** : Outils de validation et de diagnostic
+
+## 🏗️ Architecture
+
+```
+MemAlloc/
+├── src/                    # Code source principal
+│   ├── mem_core.c         # Fonctions d'allocation principales
+│   ├── mem_utils.c        # Utilitaires et gestion des blocs
+│   └── mem_debug.c        # Debugging et statistiques
+├── include/               # Fichiers d'en-tête
+│   ├── mem_alloc.h        # Interface publique
+│   └── mem_utils.h        # Interface interne
+├── tests/                 # Tests unitaires (Criterion)
+│   └── test_mem_alloc.c   # Suite de tests complète
+├── examples/              # Exemples d'utilisation
+│   ├── basic_example.c    # Utilisation basique
+│   └── advanced_example.c # Fonctionnalités avancées
+├── lib/                   # Bibliothèques compilées
+├── build/                 # Fichiers de build
+└── Makefile              # Système de build complet
+```
+
+## 🚀 Compilation et Installation
+
+### Prérequis
+
+- GCC (C99 ou plus récent)
+- Make
+- Criterion (pour les tests unitaires)
+- Valgrind (optionnel, pour le debugging)
+
+### Installation de Criterion
+
+```bash
+# Ubuntu/Debian
+sudo apt-get install libcriterion-dev
+
+# Arch Linux
+sudo pacman -S criterion
+
+# macOS (avec Homebrew)
+brew install criterion
+```
+
+### Compilation
+
+```bash
+# Afficher l'aide complète
+make help
+
+# Compilation debug (par défaut)
+make build
+
+# Compilation release optimisée
+make CONFIG=release static
+
+# Compilation avec toutes les bibliothèques
+make all-libs
+
+# Installation système
+sudo make install
+```
+
+## 🎮 Utilisation
+
+### Utilisation Basique
+
+```c
+#include "mem_alloc.h"
+
+int main() {
+    // Initialisation du gestionnaire
+    mem_init(1024 * 1024);  // 1MB de heap
+    
+    // Allocation
+    void *ptr = mem_malloc(100);
+    
+    // Utilisation...
+    strcpy((char*)ptr, "Hello World");
+    
+    // Libération
+    mem_free(ptr);
+    
+    // Nettoyage
+    mem_cleanup();
+    return 0;
+}
+```
+
+### Fonctionnalités Avancées
+
+```c
+// Statistiques détaillées
+mem_print_stats();
+
+// Détection de fuites
+mem_detect_leaks();
+
+// Vérification d'intégrité
+if (!mem_check_integrity()) {
+    printf("Corruption détectée!\n");
+}
+
+// Défragmentation
+mem_defragment();
+
+// Affichage du layout mémoire
+mem_print_heap();
+```
+
+## 🧪 Tests et Validation
+
+### Exécution des Tests
+
+```bash
+# Tests unitaires complets
+make test
+
+# Tests avec sortie verbose
+make test-verbose
+
+# Tests sous Valgrind
+make valgrind-test
+
+# Rapport de couverture
+make test-coverage
+```
+
+### Exemples d'Exécution
+
+```bash
+# Exemple basique
+make run-basic
+
+# Exemple avancé avec stress test
+make run-advanced
+
+# Debug avec GDB
+make gdb-test
+```
+
+## 📊 Fonctionnalités Techniques
+
+### Algorithmes Implémentés
+
+- **First-fit allocation** : Recherche du premier bloc libre suffisant
+- **Block splitting** : Division des blocs pour optimiser l'utilisation
+- **Block merging** : Fusion des blocs adjacents libres
+- **Alignment enforcement** : Alignement mémoire pour performance optimale
+
+### Structures de Données
+
+```c
+typedef struct mem_block {
+    size_t size;              // Taille du bloc
+    bool is_free;             // État du bloc
+    uint32_t magic;           // Nombre magique pour validation
+    struct mem_block *next;   // Bloc suivant
+    struct mem_block *prev;   // Bloc précédent
+} mem_block_t;
+```
+
+### Statistiques Collectées
+
+- Mémoire totale allouée/libérée
+- Utilisation courante et pic d'utilisation
+- Nombre d'allocations/libérations
+- Ratio de fragmentation
+- Nombre de blocs actifs
+
+## 🔧 Outils de Développement
+
+### Analyse Statique
+
+```bash
+# Analyse avec Cppcheck
+make analyze
+
+# Linting du code
+make lint
+
+# Formatage automatique
+make format
+```
+
+### Profiling et Benchmarks
+
+```bash
+# Build avec profiling
+make CONFIG=profile examples
+
+# Benchmark de performance
+make benchmark
+
+# Comparaison avec malloc système
+make run-advanced
+```
+
+### Debugging Avancé
+
+```bash
+# Build debug avec sanitizers
+make CONFIG=debug build
+
+# Tests mémoire avec Valgrind
+make valgrind-examples
+
+# Debug interactif
+make gdb-test
+```
+
+## 📈 Métriques de Performance
+
+Le gestionnaire fournit des métriques détaillées :
+
+- **Temps d'allocation** : Mesure de la latence
+- **Fragmentation** : Pourcentage de mémoire fragmentée
+- **Efficacité** : Ratio mémoire utile/overhead
+- **Fuites** : Détection automatique des fuites
+
+## 🛡️ Sécurité et Validation
+
+### Protections Implémentées
+
+- **Magic numbers** : Détection de corruption
+- **Boundary checking** : Vérification des limites
+- **Double-free protection** : Prévention des libérations multiples
+- **Invalid pointer detection** : Validation des pointeurs
+
+### Outils de Debug
+
+- Mode debug avec informations détaillées
+- Tracking des allocations avec fichier/ligne
+- Validation d'intégrité du heap
+- Rapports de fuites mémoire
+
+## 📚 Documentation
+
+### Génération de la Documentation
+
+```bash
+# Documentation Doxygen
+make docs
+
+# Pages de manuel
+make man
+```
+
+### Structure des Headers
+
+- `mem_alloc.h` : Interface publique complète
+- `mem_utils.h` : Fonctions internes (non exposées)
+
+## 🤝 Contribution
+
+### Structure de Développement
+
+1. **Code Style** : Format C99 strict avec vérifications
+2. **Tests** : Couverture complète avec Criterion
+3. **Documentation** : Headers documentés pour chaque fonction
+4. **Validation** : Tests sous Valgrind et sanitizers
+
+### Commandes de Développement
+
+```bash
+# Vérification complète
+make test && make valgrind-test && make analyze
+
+# Préparation pour commit
+make format && make lint
+
+# Build de release
+make CONFIG=release all-libs
+```
+
+## 📝 Licence
+
+Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
+
+## 🏆 Compétences Démontrées
+
+- **Gestion mémoire bas niveau** : Implémentation complète d'allocateur
+- **Structures de données** : Listes chaînées, gestion de blocs
+- **Pointeurs et arithmétique** : Manipulation avancée de pointeurs
+- **Debugging système** : Outils de diagnostic et validation
+- **Tests unitaires** : Suite de tests complète avec Criterion
+- **Build system** : Makefile avancé avec multiples configurations
+- **Optimisation** : Algorithmes efficaces et mesures de performance
+
+---
+
+**Auteur** : Gestionnaire de Mémoire Personnalisé  
+**Version** : 1.0.0  
+**Date** : 2025
