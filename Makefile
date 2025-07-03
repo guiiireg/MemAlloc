@@ -130,7 +130,9 @@ help:
 	@echo "  static            - Build static library (.a)"
 	@echo "  shared            - Build shared library (.so)"
 	@echo "  install           - Install library and headers to system"
-	@echo "  uninstall         - Remove installed library and headers"
+	@echo "  install-man       - Install manual pages to system"
+	@echo "  install-all       - Install library, headers and manual pages"
+	@echo "  uninstall         - Remove installed library, headers and man pages"
 	@echo ""
 	@echo "EXAMPLE TARGETS:"
 	@echo "  examples          - Build all example programs"
@@ -415,7 +417,21 @@ man: | $(DOC_DIR)
 	@echo "Generating man pages:"
 	@echo "===================="
 	@mkdir -p $(DOC_DIR)/man
-	@echo "Man page generation not implemented yet"
+	@echo "Generated manual pages:"
+	@echo "  - memalloc(3)      - Library API reference"
+	@echo "  - memalloc-build(1) - Build system guide"
+	@echo ""
+	@echo "Manual pages are available at:"
+	@echo "  $(DOC_DIR)/man/memalloc.3"
+	@echo "  $(DOC_DIR)/man/memalloc-build.1"
+	@echo ""
+	@echo "To install system-wide man pages:"
+	@echo "  sudo cp $(DOC_DIR)/man/*.* /usr/local/share/man/man*/"
+	@echo "  sudo mandb"
+	@echo ""
+	@echo "To view locally:"
+	@echo "  man -l $(DOC_DIR)/man/memalloc.3"
+	@echo "  man -l $(DOC_DIR)/man/memalloc-build.1"
 
 # ============================================================================
 # INSTALLATION TARGETS
@@ -424,6 +440,7 @@ man: | $(DOC_DIR)
 PREFIX ?= /usr/local
 LIBDIR := $(PREFIX)/lib
 INCDIR := $(PREFIX)/include
+MANDIR := $(PREFIX)/share/man
 
 .PHONY: install
 install: static shared
@@ -434,8 +451,24 @@ install: static shared
 	@install -m 755 $(SHARED_LIB_VER) $(LIBDIR)/
 	@ln -sf $(notdir $(SHARED_LIB_VER)) $(LIBDIR)/$(notdir $(SHARED_LIB))
 	@install -m 644 $(HEADERS) $(INCDIR)/
+	@echo "Library installed to $(LIBDIR)"
+	@echo "Headers installed to $(INCDIR)"
+
+.PHONY: install-man
+install-man: man
+	@echo "Installing manual pages:"
+	@echo "========================"
+	@install -d $(MANDIR)/man1 $(MANDIR)/man3
+	@install -m 644 $(DOC_DIR)/man/memalloc.3 $(MANDIR)/man3/
+	@install -m 644 $(DOC_DIR)/man/memalloc-build.1 $(MANDIR)/man1/
+	@mandb $(MANDIR) 2>/dev/null || echo "Note: mandb not found, run 'sudo mandb' to update man database"
+	@echo "Manual pages installed to $(MANDIR)"
+	@echo "Use 'man memalloc' and 'man memalloc-build' to view documentation"
+
+.PHONY: install-all
+install-all: install install-man
 	@ldconfig
-	@echo "Installation completed to $(PREFIX)"
+	@echo "Complete installation finished to $(PREFIX)"
 
 .PHONY: uninstall
 uninstall:
@@ -444,6 +477,9 @@ uninstall:
 	@rm -f $(LIBDIR)/lib$(PROJECT_NAME).a
 	@rm -f $(LIBDIR)/lib$(PROJECT_NAME).so*
 	@rm -f $(addprefix $(INCDIR)/, $(notdir $(HEADERS)))
+	@rm -f $(MANDIR)/man3/memalloc.3
+	@rm -f $(MANDIR)/man1/memalloc-build.1
+	@mandb $(MANDIR) 2>/dev/null || echo "Note: mandb not found"
 	@ldconfig
 	@echo "Uninstallation completed"
 
