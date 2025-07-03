@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://github.com/guiiireg/MemAlloc/blob/main/README.md
+    about: Check the README for usage instructions and examples
+  - name: 💡 Examples
+    url: https://github.com/guiiireg/MemAlloc/tree/main/examples
+    about: Look at code examples for common use cases
