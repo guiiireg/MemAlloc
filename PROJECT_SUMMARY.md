@@ -1,159 +1,159 @@
-# 🎯 Projet Terminé : Gestionnaire de Mémoire Personnalisé (MemAlloc)
+# 🎯 Completed Project: Custom Memory Allocator (MemAlloc)
 
-> 📖 **Navigation** : [🏠 README Principal](README.md) | [🤝 Guide Contribution](.github/CONTRIBUTING.md) | [📋 Changelog](CHANGELOG.md)
+> 📖 **Navigation**: [🏠 Main README](README.md) | [🤝 Contributing Guide](.github/CONTRIBUTING.md) | [📋 Changelog](CHANGELOG.md)
 
-## ✅ Résumé d'Achèvement
+## ✅ Completion Summary
 
-**Objectif atteint** : Implémentation complète d'un gestionnaire de mémoire personnalisé en C pur avec des fonctionnalités avancées de détection de fuites et de gestion de la fragmentation.
+**Objective achieved**: Complete implementation of a custom memory manager in pure C with advanced leak detection and fragmentation management features.
 
-## 📊 Statistiques du Projet
+## 📊 Project Statistics
 
-- **Lignes de code** : 1,458 lignes au total
-  - Code source principal : 546 lignes (3 fichiers)
-  - Headers d'interface : 160 lignes (2 fichiers)  
-  - Tests unitaires : 246 lignes (1 fichier)
-  - Exemples d'utilisation : 506 lignes (3 fichiers)
+- **Lines of code**: 1,458 lines total
+  - Main source code: 546 lines (3 files)
+  - Interface headers: 160 lines (2 files)  
+  - Unit tests: 246 lines (1 file)
+  - Usage examples: 506 lines (3 files)
 
-- **Architecture** : 8 dossiers, 15+ fichiers
-- **Tests** : 16 tests unitaires avec Criterion
-- **Commandes Make** : 30+ cibles dans le Makefile
-- **Documentation** : README complet, CHANGELOG, LICENSE
+- **Architecture**: 8 folders, 15+ files
+- **Tests**: 16 unit tests with Criterion
+- **Make commands**: 30+ targets in Makefile
+- **Documentation**: Complete README, CHANGELOG, LICENSE
 
-## 🏆 Fonctionnalités Implémentées
+## 🏆 Implemented Features
 
 ### ✅ Core Allocation
-- [x] `mem_malloc()` - Allocation avec algorithme first-fit
-- [x] `mem_free()` - Libération avec fusion automatique des blocs
-- [x] `mem_realloc()` - Réallocation optimisée 
-- [x] `mem_calloc()` - Allocation avec initialisation à zéro
+- [x] `mem_malloc()` - Allocation with first-fit algorithm
+- [x] `mem_free()` - Deallocation with automatic block merging
+- [x] `mem_realloc()` - Optimized reallocation
+- [x] `mem_calloc()` - Allocation with zero initialization
 
-### ✅ Gestion Avancée
-- [x] Alignement mémoire (8 bytes)
-- [x] Division et fusion des blocs
-- [x] Protection par nombres magiques
-- [x] Validation d'intégrité du heap
-- [x] Défragmentation automatique
+### ✅ Advanced Management
+- [x] Memory alignment (8 bytes)
+- [x] Block splitting and merging
+- [x] Magic number protection
+- [x] Heap integrity validation
+- [x] Automatic defragmentation
 
-### ✅ Debug & Analyse
-- [x] Détection de fuites mémoire
-- [x] Statistiques détaillées (utilisation, pic, fragmentation)
-- [x] Affichage du layout mémoire
-- [x] Mode debug avec tracking des allocations
-- [x] Vérification de corruption
+### ✅ Debug & Analysis
+- [x] Memory leak detection
+- [x] Detailed statistics (usage, peak, fragmentation)
+- [x] Memory layout display
+- [x] Debug mode with allocation tracking
+- [x] Corruption checking
 
-### ✅ Système de Build
-- [x] Makefile complet avec 30+ commandes
-- [x] Configurations multiples (debug/release/profile/coverage)
-- [x] Génération de bibliothèques statiques et partagées
-- [x] Intégration des tests automatisés
-- [x] Support Valgrind et AddressSanitizer
+### ✅ Build System
+- [x] Complete Makefile with 30+ commands
+- [x] Multiple configurations (debug/release/profile/coverage)
+- [x] Static and shared library generation
+- [x] Automated test integration
+- [x] Valgrind and AddressSanitizer support
 
-### ✅ Tests & Validation
-- [x] Suite de tests complète (16 tests)
-- [x] Couverture des cas d'erreur
-- [x] Tests de stress (10k opérations)
-- [x] Validation d'intégrité
-- [x] Tests de performance
+### ✅ Testing & Validation
+- [x] Complete test suite (16 tests)
+- [x] Error case coverage
+- [x] Stress tests (10k operations)
+- [x] Integrity validation
+- [x] Performance tests
 
 ### ✅ Documentation
-- [x] README détaillé avec instructions d'utilisation
-- [x] Exemples d'utilisation (basique et avancé)
-- [x] Headers documentés pour chaque fonction
-- [x] Script d'installation automatisé
-- [x] CHANGELOG et LICENSE
+- [x] Detailed README with usage instructions
+- [x] Usage examples (basic and advanced)
+- [x] Documented headers for each function
+- [x] Automated installation script
+- [x] CHANGELOG and LICENSE
 
-## 🛠️ Architecture Technique
+## 🛠️ Technical Architecture
 
 ```
 MemAlloc/
-├── src/                     # Code source (546 lignes)
-│   ├── mem_core.c          # Allocation principale
-│   ├── mem_utils.c         # Utilitaires et manipulation blocs
-│   └── mem_debug.c         # Debug et statistiques
-├── include/                # Headers (160 lignes)
-│   ├── mem_alloc.h         # Interface publique
-│   └── mem_utils.h         # Interface interne
-├── tests/                  # Tests unitaires (246 lignes)
-│   └── test_mem_alloc.c    # Suite complète avec Criterion
-├── examples/               # Exemples (506 lignes)
-│   ├── basic_example.c     # Utilisation basique
-│   ├── advanced_example.c  # Fonctionnalités avancées
-│   └── project_showcase.c  # Démonstration complète
-├── lib/                    # Bibliothèques compilées
-├── build/                  # Artefacts de build
-├── Makefile               # Système de build avancé
-├── install.sh             # Script d'installation
-├── README.md              # Documentation principale
-├── CHANGELOG.md           # Historique des versions
-└── LICENSE                # Licence MIT
+├── src/                     # Source code (546 lines)
+│   ├── mem_core.c          # Main allocation
+│   ├── mem_utils.c         # Utilities and block manipulation
+│   └── mem_debug.c         # Debug and statistics
+├── include/                # Headers (160 lines)
+│   ├── mem_alloc.h         # Public interface
+│   └── mem_utils.h         # Internal interface
+├── tests/                  # Unit tests (246 lines)
+│   └── test_mem_alloc.c    # Complete suite with Criterion
+├── examples/               # Examples (506 lines)
+│   ├── basic_example.c     # Basic usage
+│   ├── advanced_example.c  # Advanced features
+│   └── project_showcase.c  # Complete demonstration
+├── lib/                    # Compiled libraries
+├── build/                  # Build artifacts
+├── Makefile               # Advanced build system
+├── install.sh             # Installation script
+├── README.md              # Main documentation
+├── CHANGELOG.md           # Version history
+└── LICENSE                # MIT license
 ```
 
-## 🎮 Commandes Disponibles
+## 🎮 Available Commands
 
-### Build et Test
+### Build and Test
 ```bash
-make build                 # Build debug
-make CONFIG=release static # Build release
-make test                  # Tests unitaires
-make run-basic            # Exemple basique
-make run-advanced         # Exemple avancé
-make run-showcase         # Démonstration complète
+make build                 # Debug build
+make CONFIG=release static # Release build
+make test                  # Unit tests
+make run-basic            # Basic example
+make run-advanced         # Advanced example
+make run-showcase         # Complete demonstration
 ```
 
-### Debug et Analyse
+### Debug and Analysis
 ```bash
-make valgrind-test        # Tests sous Valgrind
-make analyze              # Analyse statique
-make benchmark            # Tests de performance
-make test-coverage        # Rapport de couverture
+make valgrind-test        # Tests under Valgrind
+make analyze              # Static analysis
+make benchmark            # Performance tests
+make test-coverage        # Coverage report
 ```
 
 ### Installation
 ```bash
-./install.sh             # Installation automatique
-make install             # Installation système
-make clean               # Nettoyage
+./install.sh             # Automatic installation
+make install             # System installation
+make clean               # Cleanup
 ```
 
-## 🔬 Validation Technique
+## 🔬 Technical Validation
 
-- **Tests** : 16/16 tests passent ✅
-- **Valgrind** : Aucune fuite détectée ✅
-- **Intégrité** : Validation heap complète ✅
-- **Performance** : 3x plus rapide que malloc système ✅
-- **Compilation** : Zéro warning en mode strict ✅
+- **Tests**: 16/16 tests pass ✅
+- **Valgrind**: No leaks detected ✅
+- **Integrity**: Complete heap validation ✅
+- **Performance**: 3x faster than system malloc ✅
+- **Compilation**: Zero warnings in strict mode ✅
 
-## 💡 Compétences Démontrées
+## 💡 Demonstrated Skills
 
-### Technique
-- **Gestion mémoire bas niveau** : Implémentation complète d'allocateur
-- **Structures de données** : Listes chaînées, gestion de blocs
-- **Algorithmes** : First-fit, fusion de blocs, défragmentation
-- **Pointeurs avancés** : Arithmétique et manipulation complexe
-- **Debug système** : Outils de diagnostic et validation
+### Technical
+- **Low-level memory management**: Complete allocator implementation
+- **Data structures**: Linked lists, block management
+- **Algorithms**: First-fit, block merging, defragmentation
+- **Advanced pointers**: Complex arithmetic and manipulation
+- **System debugging**: Diagnostic and validation tools
 
-### Développement
-- **Architecture logicielle** : Séparation claire des responsabilités
-- **Tests unitaires** : Couverture complète avec Criterion
-- **Build systems** : Makefile avancé multi-configurations
-- **Documentation** : Headers et guides d'utilisation détaillés
-- **Déploiement** : Scripts d'installation automatisés
+### Development
+- **Software architecture**: Clear separation of responsibilities
+- **Unit testing**: Complete coverage with Criterion
+- **Build systems**: Advanced multi-configuration Makefile
+- **Documentation**: Detailed headers and usage guides
+- **Deployment**: Automated installation scripts
 
-### Bonnes Pratiques
-- **Code quality** : Standards C99 stricts, zero warnings
-- **Sécurité** : Validation d'entrées, détection de corruption
-- **Performance** : Optimisations et mesures de performance
-- **Portabilité** : Compatibilité POSIX multi-plateformes
-- **Maintenance** : Structure modulaire et extensible
+### Best Practices
+- **Code quality**: Strict C99 standards, zero warnings
+- **Security**: Input validation, corruption detection
+- **Performance**: Optimizations and performance measurements
+- **Portability**: Multi-platform POSIX compatibility
+- **Maintainability**: Modular and extensible structure
 
 ## 🏁 Conclusion
 
-Le projet **MemAlloc** démontre une maîtrise complète de la gestion mémoire en C avec :
+The **MemAlloc** project demonstrates complete mastery of C memory management with:
 
-- ✅ **Implémentation fonctionnelle** complète de malloc/free
-- ✅ **Fonctionnalités avancées** de détection de fuites et défragmentation  
-- ✅ **Qualité professionnelle** avec tests, documentation et build system
-- ✅ **Expertise technique** en gestion mémoire bas niveau
-- ✅ **Bonnes pratiques** de développement logiciel
+- ✅ **Complete functional implementation** of malloc/free
+- ✅ **Advanced features** for leak detection and defragmentation
+- ✅ **Professional quality** with tests, documentation and build system
+- ✅ **Technical expertise** in low-level memory management
+- ✅ **Best practices** in software development
 
-**Résultat** : Un gestionnaire de mémoire production-ready avec toutes les fonctionnalités demandées et plus encore, démontrant un niveau d'expertise avancé en programmation système et gestion mémoire.
+**Result**: A production-ready memory manager with all requested features and more, demonstrating advanced expertise in system programming and memory management.

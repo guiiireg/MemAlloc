@@ -5,111 +5,111 @@
 [![Version](https://img.shields.io/badge/version-1.0.0-blue)]()
 [![Maintainer](https://img.shields.io/badge/maintainer-@guiiireg-purple)](https://github.com/guiiireg)
 
-Un gestionnaire de mémoire personnalisé implémenté en C pur, offrant des fonctionnalités avancées de gestion mémoire, détection de fuites, et analyse de fragmentation.
+A custom memory manager implemented in pure C, offering advanced memory management features, leak detection, and fragmentation analysis.
 
 ---
 
-## 📋 Navigation Rapide
+## 📋 Quick Navigation
 
-- [🎯 Objectifs du Projet](#-objectifs-du-projet)
+- [🎯 Project Objectives](#-project-objectives)
 - [🏗️ Architecture](#️-architecture)
-- [🚀 Installation Rapide](#-installation-rapide)
-- [🎮 Utilisation](#-utilisation)
-- [🧪 Tests et Validation](#-tests-et-validation)
-- [📊 Fonctionnalités Techniques](#-fonctionnalités-techniques)
-- [🤝 Contribution](#-contribution)
-- [📚 Documentation Complète](#-documentation-complète)
+- [🚀 Quick Installation](#-quick-installation)
+- [🎮 Usage](#-usage)
+- [🧪 Testing and Validation](#-testing-and-validation)
+- [📊 Technical Features](#-technical-features)
+- [🤝 Contributing](#-contributing)
+- [📚 Complete Documentation](#-complete-documentation)
 
 ---
 
-## 🎯 Objectifs du Projet
+## 🎯 Project Objectives
 
-Ce projet implémente un gestionnaire de mémoire complet avec :
+This project implements a complete memory manager with:
 
-- **Allocation personnalisée** : Implémentation de `malloc()` et `free()` 
-- **Gestion des fuites** : Détection et rapport des fuites mémoire
-- **Défragmentation** : Algorithmes de réduction de la fragmentation
-- **Analyse statistique** : Collecte détaillée de métriques d'utilisation
-- **Debug avancé** : Outils de validation et de diagnostic
+- **Custom allocation**: Implementation of `malloc()` and `free()`
+- **Leak management**: Detection and reporting of memory leaks
+- **Defragmentation**: Algorithms to reduce fragmentation
+- **Statistical analysis**: Detailed collection of usage metrics
+- **Advanced debugging**: Validation and diagnostic tools
 
 ## 🏗️ Architecture
 
 ```
 MemAlloc/
-├── src/                        # Code source principal
-│   ├── mem_core/              # 🔧 Fonctions d'allocation principales
-│   │   ├── mem_malloc.c       #   - Allocation de mémoire
-│   │   ├── mem_calloc.c       #   - Allocation initialisée à zéro  
-│   │   ├── mem_realloc.c      #   - Réallocation de blocs
-│   │   ├── mem_free.c         #   - Libération de mémoire
-│   │   ├── mem_init.c         #   - Initialisation et nettoyage
-│   │   └── mem_globals.c      #   - Variables globales et utilitaires
-│   ├── mem_debug/             # 🐛 Debugging et diagnostics
-│   │   ├── mem_stats.c        #   - Collecte et affichage des statistiques
-│   │   ├── mem_heap_display.c #   - Visualisation du layout du heap
-│   │   ├── mem_integrity.c    #   - Validation de l'intégrité
-│   │   ├── mem_leak_detection.c #  - Détection de fuites mémoire
-│   │   └── mem_debug_utils.c  #   - Utilitaires debug et défragmentation
-│   ├── mem_utils/             # ⚙️ Utilitaires et gestion des blocs
-│   │   ├── mem_alignment.c    #   - Alignement mémoire et recherche
-│   │   ├── mem_splitting.c    #   - Division des blocs
-│   │   ├── mem_merging.c      #   - Fusion des blocs adjacents
-│   │   └── mem_validation.c   #   - Validation et conversion de pointeurs
-│   ├── mem_core.c             # Interface principale du module core
-│   ├── mem_debug.c            # Interface principale du module debug
-│   └── mem_utils.c            # Interface principale du module utils
-├── include/                   # Fichiers d'en-tête
-│   ├── mem_alloc.h           # Interface publique
-│   └── mem_utils.h           # Interface interne
-├── tests/                    # Tests unitaires (Criterion)
-│   └── test_mem_alloc.c      # Suite de tests complète
-├── examples/                 # Exemples d'utilisation
-│   ├── basic_example.c       # Utilisation basique
-│   ├── advanced_example.c    # Fonctionnalités avancées
-│   └── project_showcase.c    # Démonstration complète
-├── lib/                      # Bibliothèques compilées
-├── build/                    # Fichiers de build
-└── Makefile                 # Système de build complet
+├── src/                        # Main source code
+│   ├── mem_core/              # 🔧 Core allocation functions
+│   │   ├── mem_malloc.c       #   - Memory allocation
+│   │   ├── mem_calloc.c       #   - Zero-initialized allocation
+│   │   ├── mem_realloc.c      #   - Block reallocation
+│   │   ├── mem_free.c         #   - Memory deallocation
+│   │   ├── mem_init.c         #   - Initialization and cleanup
+│   │   └── mem_globals.c      #   - Global variables and utilities
+│   ├── mem_debug/             # 🐛 Debugging and diagnostics
+│   │   ├── mem_stats.c        #   - Statistics collection and display
+│   │   ├── mem_heap_display.c #   - Heap layout visualization
+│   │   ├── mem_integrity.c    #   - Integrity validation
+│   │   ├── mem_leak_detection.c #  - Memory leak detection
+│   │   └── mem_debug_utils.c  #   - Debug utilities and defragmentation
+│   ├── mem_utils/             # ⚙️ Utilities and block management
+│   │   ├── mem_alignment.c    #   - Memory alignment and search
+│   │   ├── mem_splitting.c    #   - Block splitting
+│   │   ├── mem_merging.c      #   - Adjacent block merging
+│   │   └── mem_validation.c   #   - Pointer validation and conversion
+│   ├── mem_core.c             # Core module main interface
+│   ├── mem_debug.c            # Debug module main interface
+│   └── mem_utils.c            # Utils module main interface
+├── include/                   # Header files
+│   ├── mem_alloc.h           # Public interface
+│   └── mem_utils.h           # Internal interface
+├── tests/                    # Unit tests (Criterion)
+│   └── test_mem_alloc.c      # Complete test suite
+├── examples/                 # Usage examples
+│   ├── basic_example.c       # Basic usage
+│   ├── advanced_example.c    # Advanced features
+│   └── project_showcase.c    # Complete demonstration
+├── lib/                      # Compiled libraries
+├── build/                    # Build files
+└── Makefile                 # Complete build system
 ```
 
-### 🎯 Organisation Modulaire
+### 🎯 Modular Organization
 
-Le projet utilise une **architecture modulaire** avec des fonctions courtes (≤ 20 lignes) réparties en modules spécialisés :
+The project uses a **modular architecture** with short functions (≤ 20 lines) distributed across specialized modules:
 
-#### **📁 Module Core (`mem_core/`)**
-Fonctions essentielles d'allocation mémoire :
-- **Allocation** : `mem_malloc()`, `mem_calloc()`, `mem_realloc()`
-- **Libération** : `mem_free()` avec validation et fusion
-- **Initialisation** : `mem_init()` et `mem_cleanup()` pour la gestion du heap
-- **État global** : Variables partagées et utilitaires de base
+#### **📁 Core Module (`mem_core/`)**
+Essential memory allocation functions:
+- **Allocation**: `mem_malloc()`, `mem_calloc()`, `mem_realloc()`
+- **Deallocation**: `mem_free()` with validation and merging
+- **Initialization**: `mem_init()` and `mem_cleanup()` for heap management
+- **Global state**: Shared variables and base utilities
 
-#### **📁 Module Debug (`mem_debug/`)**  
-Outils de diagnostic et analyse :
-- **Statistiques** : Collecte et affichage des métriques d'utilisation
-- **Visualisation** : Affichage détaillé du layout mémoire
-- **Intégrité** : Validation de la cohérence du heap
-- **Fuites** : Détection et rapport des blocs non libérés
-- **Défragmentation** : Algorithmes de fusion des blocs libres
+#### **📁 Debug Module (`mem_debug/`)**  
+Diagnostic and analysis tools:
+- **Statistics**: Collection and display of usage metrics
+- **Visualization**: Detailed memory layout display
+- **Integrity**: Heap consistency validation
+- **Leaks**: Detection and reporting of unreleased blocks
+- **Defragmentation**: Free block merging algorithms
 
-#### **📁 Module Utils (`mem_utils/`)**
-Utilitaires de gestion des blocs :
-- **Alignement** : Calculs d'alignement et recherche de blocs libres
-- **Division** : Séparation des blocs en portions plus petites
-- **Fusion** : Combinaison des blocs adjacents libres
-- **Validation** : Vérification des pointeurs et conversion bloc/pointeur
+#### **📁 Utils Module (`mem_utils/`)**
+Block management utilities:
+- **Alignment**: Alignment calculations and free block search
+- **Splitting**: Block separation into smaller portions
+- **Merging**: Combination of adjacent free blocks
+- **Validation**: Pointer verification and block/pointer conversion
 
-## 🚀 Installation Rapide
+## 🚀 Quick Installation
 
-### Méthode Automatique (Recommandée)
+### Automatic Method (Recommended)
 ```bash
 git clone https://github.com/guiiireg/MemAlloc.git
 cd MemAlloc
 ./install.sh
 ```
 
-### Méthode Manuelle
+### Manual Method
 ```bash
-# Installation des dépendances
+# Dependencies installation
 sudo apt-get install build-essential libcriterion-dev valgrind
 
 # Compilation
@@ -118,143 +118,143 @@ make build
 # Tests
 make test
 
-# Exemples
+# Examples
 make run-basic
 ```
 
-> 📖 **Guide détaillé** : Voir [Installation Complète](#-compilation-et-installation) plus bas
+> 📖 **Detailed guide**: See [Complete Installation](#-compilation-and-installation) below
 
-## 🎮 Utilisation
+## 🎮 Usage
 
-### Utilisation Basique
+### Basic Usage
 
 ```c
 #include "mem_alloc.h"
 
 int main() {
-    // Initialisation du gestionnaire
-    mem_init(1024 * 1024);  // 1MB de heap
+    // Manager initialization
+    mem_init(1024 * 1024);  // 1MB heap
     
     // Allocation
     void *ptr = mem_malloc(100);
     
-    // Utilisation...
+    // Usage...
     strcpy((char*)ptr, "Hello World");
     
-    // Libération
+    // Deallocation
     mem_free(ptr);
     
-    // Nettoyage
+    // Cleanup
     mem_cleanup();
     return 0;
 }
 ```
 
-### Fonctionnalités Avancées
+### Advanced Features
 
 ```c
-// Statistiques détaillées
+// Detailed statistics
 mem_print_stats();
 
-// Détection de fuites
+// Leak detection
 mem_detect_leaks();
 
-// Vérification d'intégrité
+// Integrity check
 if (!mem_check_integrity()) {
-    printf("Corruption détectée!\n");
+    printf("Corruption detected!\n");
 }
 
-// Défragmentation
+// Defragmentation
 mem_defragment();
 
-// Affichage du layout mémoire
+// Memory layout display
 mem_print_heap();
 ```
 
-## 🧪 Tests et Validation
+## 🧪 Testing and Validation
 
-### Exécution des Tests
+### Running Tests
 
 ```bash
-# Tests unitaires complets
+# Complete unit tests
 make test
 
-# Tests avec sortie verbose
+# Tests with verbose output
 make test-verbose
 
-# Tests sous Valgrind
+# Tests under Valgrind
 make valgrind-test
 
-# Rapport de couverture
+# Coverage report
 make test-coverage
 ```
 
-### Exemples d'Exécution
+### Execution Examples
 
 ```bash
-# Exemple basique
+# Basic example
 make run-basic
 
-# Exemple avancé avec stress test
+# Advanced example with stress test
 make run-advanced
 
-# Debug avec GDB
+# Debug with GDB
 make gdb-test
 ```
 
-## 📊 Fonctionnalités Techniques
+## 📊 Technical Features
 
-### 🏗️ Conception Modulaire
+### 🏗️ Modular Design
 
-Le projet suit une **architecture en modules** avec une séparation claire des responsabilités :
+The project follows a **modular architecture** with clear separation of responsibilities:
 
-- **Fonctions courtes** : Toutes les fonctions ≤ 20 lignes pour une lisibilité optimale
-- **Modules spécialisés** : Chaque module a une responsabilité unique et bien définie  
-- **Encapsulation** : Interfaces claires entre les modules via les headers
-- **Maintenabilité** : Structure facilitant les modifications et extensions
+- **Short functions**: All functions ≤ 20 lines for optimal readability
+- **Specialized modules**: Each module has a unique and well-defined responsibility
+- **Encapsulation**: Clear interfaces between modules via headers
+- **Maintainability**: Structure facilitating modifications and extensions
 
-### Algorithmes Implémentés
+### Implemented Algorithms
 
-- **First-fit allocation** : Recherche du premier bloc libre suffisant
-- **Block splitting** : Division des blocs pour optimiser l'utilisation
-- **Block merging** : Fusion des blocs adjacents libres
-- **Alignment enforcement** : Alignement mémoire pour performance optimale
+- **First-fit allocation**: Search for the first sufficient free block
+- **Block splitting**: Block division to optimize usage
+- **Block merging**: Adjacent free block fusion
+- **Alignment enforcement**: Memory alignment for optimal performance
 
-### Structures de Données
+### Data Structures
 
 ```c
 typedef struct mem_block {
-    size_t size;              // Taille du bloc
-    bool is_free;             // État du bloc
-    uint32_t magic;           // Nombre magique pour validation
-    struct mem_block *next;   // Bloc suivant
-    struct mem_block *prev;   // Bloc précédent
+    size_t size;              // Block size
+    bool is_free;             // Block state
+    uint32_t magic;           // Magic number for validation
+    struct mem_block *next;   // Next block
+    struct mem_block *prev;   // Previous block
 } mem_block_t;
 ```
 
-### Statistiques Collectées
+### Collected Statistics
 
-- Mémoire totale allouée/libérée
-- Utilisation courante et pic d'utilisation
-- Nombre d'allocations/libérations
-- Ratio de fragmentation
-- Nombre de blocs actifs
+- Total allocated/freed memory
+- Current usage and peak usage
+- Number of allocations/deallocations
+- Fragmentation ratio
+- Number of active blocks
 
-### 🔧 Organisation des Fonctions par Module
+### 🔧 Function Organization by Module
 
 #### **Core Functions** (`mem_core/`)
 ```c
-// Allocation principale - fonctions helper pour stats et préparation
+// Main allocation - helper functions for stats and preparation
 void* mem_malloc(size_t size);
 static void update_allocation_stats();
 static mem_block_t* prepare_block();
 
-// Réallocation - fonctions helper pour différents cas
+// Reallocation - helper functions for different cases
 void* mem_realloc(void *ptr, size_t new_size);
 static void* handle_size_decrease();
 static void* handle_size_increase();
 
-// Initialisation - fonctions helper pour setup
+// Initialization - helper functions for setup
 int mem_init(size_t heap_size);
 static int setup_heap();
 static void initialize_first_block();
@@ -262,164 +262,164 @@ static void initialize_first_block();
 
 #### **Debug Functions** (`mem_debug/`)
 ```c
-// Statistiques - calcul des métriques
+// Statistics - metrics calculation
 void mem_get_stats(mem_stats_t *stats);
 static void calculate_heap_metrics();
 
-// Affichage heap - fonctions helper pour formatage
+// Heap display - helper functions for formatting
 void mem_print_heap(void);
 static void print_heap_header();
 static void print_block_info();
 
-// Intégrité - validation modulaire
+// Integrity - modular validation
 bool mem_check_integrity(void);
 static bool validate_block();
 ```
 
 #### **Utility Functions** (`mem_utils/`)
 ```c
-// Division de blocs - helper pour setup
+// Block splitting - helper for setup
 mem_block_t* mem_split_block();
 static void setup_new_block();
 
-// Fusion de blocs - opérations directionnelles
+// Block merging - directional operations
 void mem_merge_blocks(mem_block_t *block);
 static void merge_with_next();
 static void merge_with_prev();
 
-// Validation - vérifications spécialisées
+// Validation - specialized checks
 bool mem_is_valid_ptr(void *ptr);
 static bool is_ptr_in_heap_bounds();
 static bool is_block_valid();
 ```
 
-### 💡 Avantages de l'Architecture Modulaire
+### 💡 Modular Architecture Benefits
 
-- **🔍 Lisibilité** : Code plus clair avec des fonctions courtes et focalisées
-- **🛠️ Maintenabilité** : Modifications isolées dans des modules spécifiques
-- **🧪 Testabilité** : Tests ciblés par module et fonction
-- **📈 Évolutivité** : Ajout facile de nouvelles fonctionnalités
-- **🎯 Spécialisation** : Chaque fichier a une responsabilité unique
-- **🔧 Debug facilité** : Localisation rapide des problèmes par module
+- **🔍 Readability**: Clearer code with short and focused functions
+- **🛠️ Maintainability**: Isolated modifications in specific modules
+- **🧪 Testability**: Targeted tests by module and function
+- **📈 Scalability**: Easy addition of new features
+- **🎯 Specialization**: Each file has a unique responsibility
+- **🔧 Easier debugging**: Fast problem localization by module
 
-## 🔧 Outils de Développement
+## 🔧 Development Tools
 
-### Analyse Statique
+### Static Analysis
 
 ```bash
-# Analyse avec Cppcheck
+# Analysis with Cppcheck
 make analyze
 
-# Linting du code
+# Code linting
 make lint
 
-# Formatage automatique
+# Automatic formatting
 make format
 ```
 
-### Profiling et Benchmarks
+### Profiling and Benchmarks
 
 ```bash
-# Build avec profiling
+# Build with profiling
 make CONFIG=profile examples
 
-# Benchmark de performance
+# Performance benchmark
 make benchmark
 
-# Comparaison avec malloc système
+# Comparison with system malloc
 make run-advanced
 ```
 
-### Debugging Avancé
+### Advanced Debugging
 
 ```bash
-# Build debug avec sanitizers
+# Debug build with sanitizers
 make CONFIG=debug build
 
-# Tests mémoire avec Valgrind
+# Memory tests with Valgrind
 make valgrind-examples
 
-# Debug interactif
+# Interactive debug
 make gdb-test
 ```
 
-## 📈 Métriques de Performance
+## 📈 Performance Metrics
 
-Le gestionnaire fournit des métriques détaillées :
+The manager provides detailed metrics:
 
-- **Temps d'allocation** : Mesure de la latence
-- **Fragmentation** : Pourcentage de mémoire fragmentée
-- **Efficacité** : Ratio mémoire utile/overhead
-- **Fuites** : Détection automatique des fuites
+- **Allocation time**: Latency measurement
+- **Fragmentation**: Percentage of fragmented memory
+- **Efficiency**: Useful memory/overhead ratio
+- **Leaks**: Automatic leak detection
 
-## 🛡️ Sécurité et Validation
+## 🛡️ Security and Validation
 
-### Protections Implémentées
+### Implemented Protections
 
-- **Magic numbers** : Détection de corruption
-- **Boundary checking** : Vérification des limites
-- **Double-free protection** : Prévention des libérations multiples
-- **Invalid pointer detection** : Validation des pointeurs
+- **Magic numbers**: Corruption detection
+- **Boundary checking**: Boundary verification
+- **Double-free protection**: Prevention of multiple deallocations
+- **Invalid pointer detection**: Pointer validation
 
-### Outils de Debug
+### Debug Tools
 
-- Mode debug avec informations détaillées
-- Tracking des allocations avec fichier/ligne
-- Validation d'intégrité du heap
-- Rapports de fuites mémoire
+- Debug mode with detailed information
+- Allocation tracking with file/line
+- Heap integrity validation
+- Memory leak reports
 
 ## 📚 Documentation
 
-### Génération de la Documentation
+### Documentation Generation
 
 ```bash
-# Documentation Doxygen
+# Doxygen documentation
 make docs
 
-# Pages de manuel
+# Manual pages
 make man
 ```
 
-### Structure des Headers
+### Header Structure
 
-- `mem_alloc.h` : Interface publique complète
-- `mem_utils.h` : Fonctions internes (non exposées)
-
----
-
-## 📚 Documentation Complète
-
-### 📋 Guides et Références
-- **[CHANGELOG.md](CHANGELOG.md)** - Historique des versions et nouveautés
-- **[LICENSE](LICENSE)** - Licence MIT du projet
-- **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Résumé technique complet du projet
-
-### 🛠️ Développement et Contribution
-- **[CONTRIBUTING.md](.github/CONTRIBUTING.md)** - Guide pour les rapports de bugs et demandes d'améliorations
-- **[Issue Templates](.github/ISSUE_TEMPLATE/)** - Templates pour rapporter des problèmes
-- **[Workflows GitHub](.github/workflows/)** - CI/CD automatisé
-
-### 💡 Exemples Pratiques
-- **[examples/basic_example.c](examples/basic_example.c)** - Utilisation basique du gestionnaire
-- **[examples/advanced_example.c](examples/advanced_example.c)** - Fonctionnalités avancées et benchmarks
-- **[examples/project_showcase.c](examples/project_showcase.c)** - Démonstration complète des capacités
-
-### 🧪 Tests et Validation
-- **[tests/test_mem_alloc.c](tests/test_mem_alloc.c)** - Suite de tests unitaires complète
-- **[Makefile](Makefile)** - Système de build avec 30+ commandes
+- `mem_alloc.h`: Complete public interface
+- `mem_utils.h`: Internal functions (not exposed)
 
 ---
 
-## 🚀 Compilation et Installation
+## 📚 Complete Documentation
 
-### Prérequis
+### 📋 Guides and References
+- **[CHANGELOG.md](CHANGELOG.md)** - Version history and updates
+- **[LICENSE](LICENSE)** - Project MIT license
+- **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Complete technical project summary
 
-- GCC (C99 ou plus récent)
+### 🛠️ Development and Contributing
+- **[CONTRIBUTING.md](.github/CONTRIBUTING.md)** - Guide for bug reports and improvement requests
+- **[Issue Templates](.github/ISSUE_TEMPLATE/)** - Templates for reporting issues
+- **[GitHub Workflows](.github/workflows/)** - Automated CI/CD
+
+### 💡 Practical Examples
+- **[examples/basic_example.c](examples/basic_example.c)** - Basic manager usage
+- **[examples/advanced_example.c](examples/advanced_example.c)** - Advanced features and benchmarks
+- **[examples/project_showcase.c](examples/project_showcase.c)** - Complete capability demonstration
+
+### 🧪 Testing and Validation
+- **[tests/test_mem_alloc.c](tests/test_mem_alloc.c)** - Complete unit test suite
+- **[Makefile](Makefile)** - Build system with 30+ commands
+
+---
+
+## 🚀 Compilation and Installation
+
+### Prerequisites
+
+- GCC (C99 or newer)
 - Make
-- Criterion (pour les tests unitaires)
-- Valgrind (optionnel, pour le debugging)
+- Criterion (for unit tests)
+- Valgrind (optional, for debugging)
 
-### Installation de Criterion
+### Criterion Installation
 
 ```bash
 # Ubuntu/Debian
@@ -428,65 +428,65 @@ sudo apt-get install libcriterion-dev
 # Arch Linux
 sudo pacman -S criterion
 
-# macOS (avec Homebrew)
+# macOS (with Homebrew)
 brew install criterion
 ```
 
-### Compilation Détaillée
+### Detailed Compilation
 
 ```bash
-# Afficher l'aide complète
+# Show complete help
 make help
 
-# Compilation debug (par défaut)
+# Debug compilation (default)
 make build
 
-# Compilation release optimisée
+# Optimized release compilation
 make CONFIG=release static
 
-# Compilation avec toutes les bibliothèques
+# Compilation with all libraries
 make all-libs
 
-# Installation système
+# System installation
 sudo make install
 ```
-## 🤝 Contribution
+## 🤝 Contributing
 
-**Note importante** : Ce projet ne accepte pas de contributions directes de code. 
+**Important note**: This project does not accept direct code contributions.
 
-### Comment aider
-- 🐛 **Rapports de bugs** : Utilisez les [GitHub Issues](https://github.com/guiiireg/MemAlloc/issues) avec le template approprié
-- 💡 **Demandes d'améliorations** : Proposez des nouvelles fonctionnalités via les issues
-- 🗣️ **Feedback** : Partagez votre expérience d'utilisation et suggestions
-- 📊 **Tests** : Reportez des résultats de performance ou des cas d'usage
+### How to help
+- 🐛 **Bug reports**: Use [GitHub Issues](https://github.com/guiiireg/MemAlloc/issues) with the appropriate template
+- 💡 **Feature requests**: Propose new features via issues
+- 🗣️ **Feedback**: Share your usage experience and suggestions
+- 📊 **Testing**: Report performance results or use cases
 
 ### Maintenance
-Ce projet est maintenu par [@guiiireg](https://github.com/guiiireg). Tous les correctifs de bugs et implémentations de nouvelles fonctionnalités sont gérés par le mainteneur pour assurer la cohérence et la qualité du code.
+This project is maintained by [@guiiireg](https://github.com/guiiireg). All bug fixes and new feature implementations are handled by the maintainer to ensure code consistency and quality.
 
-Pour plus de détails, consultez [CONTRIBUTING.md](.github/CONTRIBUTING.md).
-
----
-
-## 📝 Licence
-
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
-
-## 🏆 Compétences Démontrées
-
-- **🏗️ Architecture modulaire** : Conception en modules spécialisés avec responsabilités claires
-- **📏 Code quality** : Fonctions courtes (≤20 lignes) pour une lisibilité optimale
-- **🔧 Gestion mémoire bas niveau** : Implémentation complète d'allocateur personnalisé
-- **🔗 Structures de données** : Listes chaînées bidirectionnelles et gestion avancée de blocs
-- **🎯 Pointeurs et arithmétique** : Manipulation experte de pointeurs et calculs d'adresses
-- **🐛 Debugging système** : Outils complets de diagnostic, validation et détection de fuites
-- **✅ Tests unitaires** : Suite de tests exhaustive avec framework Criterion
-- **⚙️ Build system** : Makefile avancé avec 30+ commandes et configurations multiples
-- **🚀 Optimisation** : Algorithmes efficaces avec mesures et analyse de performance
-- **📁 Organisation du code** : Séparation modulaire claire entre core, debug et utilities
-- **🛡️ Sécurité** : Validation robuste avec magic numbers et protection contre la corruption
+For more details, see [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 ---
 
-**Auteur** : Gestionnaire de Mémoire Personnalisé  
-**Version** : 1.0.0  
-**Date** : 2025
+## 📝 License
+
+This project is under MIT license. See the LICENSE file for more details.
+
+## 🏆 Demonstrated Skills
+
+- **🏗️ Modular architecture**: Specialized module design with clear responsibilities
+- **📏 Code quality**: Short functions (≤20 lines) for optimal readability
+- **🔧 Low-level memory management**: Complete custom allocator implementation
+- **🔗 Data structures**: Bidirectional linked lists and advanced block management
+- **🎯 Pointers and arithmetic**: Expert pointer manipulation and address calculations
+- **🐛 System debugging**: Complete diagnostic tools, validation and leak detection
+- **✅ Unit testing**: Exhaustive test suite with Criterion framework
+- **⚙️ Build system**: Advanced Makefile with 30+ commands and multiple configurations
+- **🚀 Optimization**: Efficient algorithms with measurements and performance analysis
+- **📁 Code organization**: Clear modular separation between core, debug and utilities
+- **🛡️ Security**: Robust validation with magic numbers and corruption protection
+
+---
+
+**Author**: Custom Memory Allocator  
+**Version**: 1.0.0  
+**Date**: 2025

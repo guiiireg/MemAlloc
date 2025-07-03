@@ -1,6 +1,6 @@
 # Contributing to MemAlloc
 
-> 📖 **Navigation** : [🏠 README Principal](../README.md) | [📋 Changelog](../CHANGELOG.md) | [📊 Résumé Technique](../PROJECT_SUMMARY.md)
+> 📖 **Navigation**: [🏠 Main README](../README.md) | [📋 Changelog](../CHANGELOG.md) | [📊 Technical Summary](../PROJECT_SUMMARY.md)
 
 Thank you for your interest in MemAlloc! While this project doesn't accept direct code contributions, we welcome bug reports, feature requests, and feedback to help improve the project.
 

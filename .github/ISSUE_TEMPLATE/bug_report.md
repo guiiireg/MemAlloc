@@ -7,7 +7,7 @@ assignees: guiiireg
 
 ---
 
-> 📖 **Avant de rapporter** : Consultez la [documentation](../README.md) et les [exemples](../examples/) | [Toutes les issues](https://github.com/guiiireg/MemAlloc/issues)
+> 📖 **Before reporting**: Check the [documentation](../README.md) and [examples](../examples/) | [All issues](https://github.com/guiiireg/MemAlloc/issues)
 
 ## Bug Description
 A clear and concise description of what the bug is.
