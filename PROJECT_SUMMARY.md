@@ -1,5 +1,7 @@
 # 🎯 Projet Terminé : Gestionnaire de Mémoire Personnalisé (MemAlloc)
 
+> 📖 **Navigation** : [🏠 README Principal](README.md) | [🤝 Guide Contribution](.github/CONTRIBUTING.md) | [📋 Changelog](CHANGELOG.md)
+
 ## ✅ Résumé d'Achèvement
 
 **Objectif atteint** : Implémentation complète d'un gestionnaire de mémoire personnalisé en C pur avec des fonctionnalités avancées de détection de fuites et de gestion de la fragmentation.

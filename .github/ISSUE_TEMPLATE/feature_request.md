@@ -7,6 +7,8 @@ assignees: guiiireg
 
 ---
 
+> 📖 **Avant de suggérer** : Vérifiez la [documentation](../README.md) et le [changelog](../CHANGELOG.md) | [Toutes les issues](https://github.com/guiiireg/MemAlloc/issues)
+
 ## Feature Description
 A clear and concise description of the feature you'd like to see.
 

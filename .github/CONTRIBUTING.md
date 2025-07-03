@@ -1,5 +1,7 @@
 # Contributing to MemAlloc
 
+> 📖 **Navigation** : [🏠 README Principal](../README.md) | [📋 Changelog](../CHANGELOG.md) | [📊 Résumé Technique](../PROJECT_SUMMARY.md)
+
 Thank you for your interest in MemAlloc! While this project doesn't accept direct code contributions, we welcome bug reports, feature requests, and feedback to help improve the project.
 
 ## Code of Conduct
@@ -91,13 +93,17 @@ make analyze
 
 ## Getting Help
 
-- Check the [README.md](../README.md) for basic usage
-- Look at [examples/](../examples/) for code examples
-- Search existing [Issues](https://github.com/guiiireg/MemAlloc/issues)
+- Check the [📖 README Principal](../README.md) for basic usage
+- Look at [💡 examples/](../examples/) for code examples
+- Search existing [🐛 Issues](https://github.com/guiiireg/MemAlloc/issues)
 - Create a new issue with the appropriate template
 
 ## Project Status
 
 This project is actively maintained by [@guiiireg](https://github.com/guiiireg). Bug reports and feature requests are welcomed and will be addressed by the maintainer.
 
-Thank you for your interest in MemAlloc!
+**Thank you for your interest in MemAlloc!**
+
+---
+
+> 📚 **Plus de documentation** : [README](../README.md) | [Changelog](../CHANGELOG.md) | [Résumé Technique](../PROJECT_SUMMARY.md) | [Exemples](../examples/)

@@ -7,6 +7,8 @@ assignees: guiiireg
 
 ---
 
+> 📖 **Ressources utiles** : [Documentation](../README.md) | [Exemples d'utilisation](../examples/) | [Guide de contribution](../CONTRIBUTING.md)
+
 ## Question
 What would you like to know about MemAlloc?
 

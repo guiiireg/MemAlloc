@@ -1,5 +1,7 @@
 # Changelog
 
+> 📖 **Navigation** : [🏠 README Principal](README.md) | [🤝 Guide Contribution](.github/CONTRIBUTING.md) | [📊 Résumé Technique](PROJECT_SUMMARY.md)
+
 All notable changes to the MemAlloc custom memory allocator will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),

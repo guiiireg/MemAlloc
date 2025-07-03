@@ -3,8 +3,24 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-blue)]()
 [![Version](https://img.shields.io/badge/version-1.0.0-blue)]()
+[![Maintainer](https://img.shields.io/badge/maintainer-@guiiireg-purple)](https://github.com/guiiireg)
 
 Un gestionnaire de mémoire personnalisé implémenté en C pur, offrant des fonctionnalités avancées de gestion mémoire, détection de fuites, et analyse de fragmentation.
+
+---
+
+## 📋 Navigation Rapide
+
+- [🎯 Objectifs du Projet](#-objectifs-du-projet)
+- [🏗️ Architecture](#️-architecture)
+- [🚀 Installation Rapide](#-installation-rapide)
+- [🎮 Utilisation](#-utilisation)
+- [🧪 Tests et Validation](#-tests-et-validation)
+- [📊 Fonctionnalités Techniques](#-fonctionnalités-techniques)
+- [🤝 Contribution](#-contribution)
+- [📚 Documentation Complète](#-documentation-complète)
+
+---
 
 ## 🎯 Objectifs du Projet
 
@@ -37,46 +53,31 @@ MemAlloc/
 └── Makefile              # Système de build complet
 ```
 
-## 🚀 Compilation et Installation
+## 🚀 Installation Rapide
 
-### Prérequis
-
-- GCC (C99 ou plus récent)
-- Make
-- Criterion (pour les tests unitaires)
-- Valgrind (optionnel, pour le debugging)
-
-### Installation de Criterion
-
+### Méthode Automatique (Recommandée)
 ```bash
-# Ubuntu/Debian
-sudo apt-get install libcriterion-dev
-
-# Arch Linux
-sudo pacman -S criterion
-
-# macOS (avec Homebrew)
-brew install criterion
+git clone https://github.com/guiiireg/MemAlloc.git
+cd MemAlloc
+./install.sh
 ```
 
-### Compilation
-
+### Méthode Manuelle
 ```bash
-# Afficher l'aide complète
-make help
+# Installation des dépendances
+sudo apt-get install build-essential libcriterion-dev valgrind
 
-# Compilation debug (par défaut)
+# Compilation
 make build
 
-# Compilation release optimisée
-make CONFIG=release static
+# Tests
+make test
 
-# Compilation avec toutes les bibliothèques
-make all-libs
-
-# Installation système
-sudo make install
+# Exemples
+make run-basic
 ```
+
+> 📖 **Guide détaillé** : Voir [Installation Complète](#-compilation-et-installation) plus bas
 
 ## 🎮 Utilisation
 
@@ -268,6 +269,71 @@ make man
 - `mem_alloc.h` : Interface publique complète
 - `mem_utils.h` : Fonctions internes (non exposées)
 
+---
+
+## 📚 Documentation Complète
+
+### 📋 Guides et Références
+- **[CHANGELOG.md](CHANGELOG.md)** - Historique des versions et nouveautés
+- **[LICENSE](LICENSE)** - Licence MIT du projet
+- **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Résumé technique complet du projet
+
+### 🛠️ Développement et Contribution
+- **[CONTRIBUTING.md](.github/CONTRIBUTING.md)** - Guide pour les rapports de bugs et demandes d'améliorations
+- **[Issue Templates](.github/ISSUE_TEMPLATE/)** - Templates pour rapporter des problèmes
+- **[Workflows GitHub](.github/workflows/)** - CI/CD automatisé
+
+### 💡 Exemples Pratiques
+- **[examples/basic_example.c](examples/basic_example.c)** - Utilisation basique du gestionnaire
+- **[examples/advanced_example.c](examples/advanced_example.c)** - Fonctionnalités avancées et benchmarks
+- **[examples/project_showcase.c](examples/project_showcase.c)** - Démonstration complète des capacités
+
+### 🧪 Tests et Validation
+- **[tests/test_mem_alloc.c](tests/test_mem_alloc.c)** - Suite de tests unitaires complète
+- **[Makefile](Makefile)** - Système de build avec 30+ commandes
+
+---
+
+## 🚀 Compilation et Installation
+
+### Prérequis
+
+- GCC (C99 ou plus récent)
+- Make
+- Criterion (pour les tests unitaires)
+- Valgrind (optionnel, pour le debugging)
+
+### Installation de Criterion
+
+```bash
+# Ubuntu/Debian
+sudo apt-get install libcriterion-dev
+
+# Arch Linux
+sudo pacman -S criterion
+
+# macOS (avec Homebrew)
+brew install criterion
+```
+
+### Compilation Détaillée
+
+```bash
+# Afficher l'aide complète
+make help
+
+# Compilation debug (par défaut)
+make build
+
+# Compilation release optimisée
+make CONFIG=release static
+
+# Compilation avec toutes les bibliothèques
+make all-libs
+
+# Installation système
+sudo make install
+```
 ## 🤝 Contribution
 
 **Note importante** : Ce projet ne accepte pas de contributions directes de code. 

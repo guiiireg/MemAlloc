@@ -1,0 +1,1 @@
+Custom memory allocator implemented in pure C with leak detection, fragmentation management, and comprehensive testing suite. Features malloc/free replacement, debugging tools, and professional build system.
