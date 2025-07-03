@@ -82,8 +82,8 @@ LDFLAGS_COVERAGE:= --coverage
 # SOURCE FILES
 # ============================================================================
 
-SOURCES         := $(wildcard $(SRC_DIR)/*.c)
-OBJECTS         := $(SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+SOURCES         := $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/mem_core/*.c) $(wildcard $(SRC_DIR)/mem_debug/*.c) $(wildcard $(SRC_DIR)/mem_utils/*.c)
+OBJECTS         := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SOURCES))
 HEADERS         := $(wildcard $(INC_DIR)/*.h)
 
 TEST_SOURCES    := $(wildcard $(TEST_DIR)/*.c)
@@ -215,6 +215,7 @@ $(OBJ_DIR) $(BIN_DIR) $(LIB_DIR) $(DOC_DIR):
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS) | $(OBJ_DIR)
 	@echo "Compiling $< ($(BUILD_TYPE))"
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -fPIC -c $< -o $@
 
 $(OBJ_DIR)/test_%.o: $(TEST_DIR)/%.c $(HEADERS) | $(OBJ_DIR)

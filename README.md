@@ -36,22 +36,67 @@ Ce projet implémente un gestionnaire de mémoire complet avec :
 
 ```
 MemAlloc/
-├── src/                    # Code source principal
-│   ├── mem_core.c         # Fonctions d'allocation principales
-│   ├── mem_utils.c        # Utilitaires et gestion des blocs
-│   └── mem_debug.c        # Debugging et statistiques
-├── include/               # Fichiers d'en-tête
-│   ├── mem_alloc.h        # Interface publique
-│   └── mem_utils.h        # Interface interne
-├── tests/                 # Tests unitaires (Criterion)
-│   └── test_mem_alloc.c   # Suite de tests complète
-├── examples/              # Exemples d'utilisation
-│   ├── basic_example.c    # Utilisation basique
-│   └── advanced_example.c # Fonctionnalités avancées
-├── lib/                   # Bibliothèques compilées
-├── build/                 # Fichiers de build
-└── Makefile              # Système de build complet
+├── src/                        # Code source principal
+│   ├── mem_core/              # 🔧 Fonctions d'allocation principales
+│   │   ├── mem_malloc.c       #   - Allocation de mémoire
+│   │   ├── mem_calloc.c       #   - Allocation initialisée à zéro  
+│   │   ├── mem_realloc.c      #   - Réallocation de blocs
+│   │   ├── mem_free.c         #   - Libération de mémoire
+│   │   ├── mem_init.c         #   - Initialisation et nettoyage
+│   │   └── mem_globals.c      #   - Variables globales et utilitaires
+│   ├── mem_debug/             # 🐛 Debugging et diagnostics
+│   │   ├── mem_stats.c        #   - Collecte et affichage des statistiques
+│   │   ├── mem_heap_display.c #   - Visualisation du layout du heap
+│   │   ├── mem_integrity.c    #   - Validation de l'intégrité
+│   │   ├── mem_leak_detection.c #  - Détection de fuites mémoire
+│   │   └── mem_debug_utils.c  #   - Utilitaires debug et défragmentation
+│   ├── mem_utils/             # ⚙️ Utilitaires et gestion des blocs
+│   │   ├── mem_alignment.c    #   - Alignement mémoire et recherche
+│   │   ├── mem_splitting.c    #   - Division des blocs
+│   │   ├── mem_merging.c      #   - Fusion des blocs adjacents
+│   │   └── mem_validation.c   #   - Validation et conversion de pointeurs
+│   ├── mem_core.c             # Interface principale du module core
+│   ├── mem_debug.c            # Interface principale du module debug
+│   └── mem_utils.c            # Interface principale du module utils
+├── include/                   # Fichiers d'en-tête
+│   ├── mem_alloc.h           # Interface publique
+│   └── mem_utils.h           # Interface interne
+├── tests/                    # Tests unitaires (Criterion)
+│   └── test_mem_alloc.c      # Suite de tests complète
+├── examples/                 # Exemples d'utilisation
+│   ├── basic_example.c       # Utilisation basique
+│   ├── advanced_example.c    # Fonctionnalités avancées
+│   └── project_showcase.c    # Démonstration complète
+├── lib/                      # Bibliothèques compilées
+├── build/                    # Fichiers de build
+└── Makefile                 # Système de build complet
 ```
+
+### 🎯 Organisation Modulaire
+
+Le projet utilise une **architecture modulaire** avec des fonctions courtes (≤ 20 lignes) réparties en modules spécialisés :
+
+#### **📁 Module Core (`mem_core/`)**
+Fonctions essentielles d'allocation mémoire :
+- **Allocation** : `mem_malloc()`, `mem_calloc()`, `mem_realloc()`
+- **Libération** : `mem_free()` avec validation et fusion
+- **Initialisation** : `mem_init()` et `mem_cleanup()` pour la gestion du heap
+- **État global** : Variables partagées et utilitaires de base
+
+#### **📁 Module Debug (`mem_debug/`)**  
+Outils de diagnostic et analyse :
+- **Statistiques** : Collecte et affichage des métriques d'utilisation
+- **Visualisation** : Affichage détaillé du layout mémoire
+- **Intégrité** : Validation de la cohérence du heap
+- **Fuites** : Détection et rapport des blocs non libérés
+- **Défragmentation** : Algorithmes de fusion des blocs libres
+
+#### **📁 Module Utils (`mem_utils/`)**
+Utilitaires de gestion des blocs :
+- **Alignement** : Calculs d'alignement et recherche de blocs libres
+- **Division** : Séparation des blocs en portions plus petites
+- **Fusion** : Combinaison des blocs adjacents libres
+- **Validation** : Vérification des pointeurs et conversion bloc/pointeur
 
 ## 🚀 Installation Rapide
 
@@ -159,6 +204,15 @@ make gdb-test
 
 ## 📊 Fonctionnalités Techniques
 
+### 🏗️ Conception Modulaire
+
+Le projet suit une **architecture en modules** avec une séparation claire des responsabilités :
+
+- **Fonctions courtes** : Toutes les fonctions ≤ 20 lignes pour une lisibilité optimale
+- **Modules spécialisés** : Chaque module a une responsabilité unique et bien définie  
+- **Encapsulation** : Interfaces claires entre les modules via les headers
+- **Maintenabilité** : Structure facilitant les modifications et extensions
+
 ### Algorithmes Implémentés
 
 - **First-fit allocation** : Recherche du premier bloc libre suffisant
@@ -185,6 +239,68 @@ typedef struct mem_block {
 - Nombre d'allocations/libérations
 - Ratio de fragmentation
 - Nombre de blocs actifs
+
+### 🔧 Organisation des Fonctions par Module
+
+#### **Core Functions** (`mem_core/`)
+```c
+// Allocation principale - fonctions helper pour stats et préparation
+void* mem_malloc(size_t size);
+static void update_allocation_stats();
+static mem_block_t* prepare_block();
+
+// Réallocation - fonctions helper pour différents cas
+void* mem_realloc(void *ptr, size_t new_size);
+static void* handle_size_decrease();
+static void* handle_size_increase();
+
+// Initialisation - fonctions helper pour setup
+int mem_init(size_t heap_size);
+static int setup_heap();
+static void initialize_first_block();
+```
+
+#### **Debug Functions** (`mem_debug/`)
+```c
+// Statistiques - calcul des métriques
+void mem_get_stats(mem_stats_t *stats);
+static void calculate_heap_metrics();
+
+// Affichage heap - fonctions helper pour formatage
+void mem_print_heap(void);
+static void print_heap_header();
+static void print_block_info();
+
+// Intégrité - validation modulaire
+bool mem_check_integrity(void);
+static bool validate_block();
+```
+
+#### **Utility Functions** (`mem_utils/`)
+```c
+// Division de blocs - helper pour setup
+mem_block_t* mem_split_block();
+static void setup_new_block();
+
+// Fusion de blocs - opérations directionnelles
+void mem_merge_blocks(mem_block_t *block);
+static void merge_with_next();
+static void merge_with_prev();
+
+// Validation - vérifications spécialisées
+bool mem_is_valid_ptr(void *ptr);
+static bool is_ptr_in_heap_bounds();
+static bool is_block_valid();
+```
+
+### 💡 Avantages de l'Architecture Modulaire
+
+- **🔍 Lisibilité** : Code plus clair avec des fonctions courtes et focalisées
+- **🛠️ Maintenabilité** : Modifications isolées dans des modules spécifiques
+- **🧪 Testabilité** : Tests ciblés par module et fonction
+- **📈 Évolutivité** : Ajout facile de nouvelles fonctionnalités
+- **🎯 Spécialisation** : Chaque fichier a une responsabilité unique
+- **🔧 Debug facilité** : Localisation rapide des problèmes par module
 
 ## 🔧 Outils de Développement
 
@@ -357,13 +473,17 @@ Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
 
 ## 🏆 Compétences Démontrées
 
-- **Gestion mémoire bas niveau** : Implémentation complète d'allocateur
-- **Structures de données** : Listes chaînées, gestion de blocs
-- **Pointeurs et arithmétique** : Manipulation avancée de pointeurs
-- **Debugging système** : Outils de diagnostic et validation
-- **Tests unitaires** : Suite de tests complète avec Criterion
-- **Build system** : Makefile avancé avec multiples configurations
-- **Optimisation** : Algorithmes efficaces et mesures de performance
+- **🏗️ Architecture modulaire** : Conception en modules spécialisés avec responsabilités claires
+- **📏 Code quality** : Fonctions courtes (≤20 lignes) pour une lisibilité optimale
+- **🔧 Gestion mémoire bas niveau** : Implémentation complète d'allocateur personnalisé
+- **🔗 Structures de données** : Listes chaînées bidirectionnelles et gestion avancée de blocs
+- **🎯 Pointeurs et arithmétique** : Manipulation experte de pointeurs et calculs d'adresses
+- **🐛 Debugging système** : Outils complets de diagnostic, validation et détection de fuites
+- **✅ Tests unitaires** : Suite de tests exhaustive avec framework Criterion
+- **⚙️ Build system** : Makefile avancé avec 30+ commandes et configurations multiples
+- **🚀 Optimisation** : Algorithmes efficaces avec mesures et analyse de performance
+- **📁 Organisation du code** : Séparation modulaire claire entre core, debug et utilities
+- **🛡️ Sécurité** : Validation robuste avec magic numbers et protection contre la corruption
 
 ---
 
