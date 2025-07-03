@@ -270,25 +270,20 @@ make man
 
 ## 🤝 Contribution
 
-### Structure de Développement
+**Note importante** : Ce projet ne accepte pas de contributions directes de code. 
 
-1. **Code Style** : Format C99 strict avec vérifications
-2. **Tests** : Couverture complète avec Criterion
-3. **Documentation** : Headers documentés pour chaque fonction
-4. **Validation** : Tests sous Valgrind et sanitizers
+### Comment aider
+- 🐛 **Rapports de bugs** : Utilisez les [GitHub Issues](https://github.com/guiiireg/MemAlloc/issues) avec le template approprié
+- 💡 **Demandes d'améliorations** : Proposez des nouvelles fonctionnalités via les issues
+- 🗣️ **Feedback** : Partagez votre expérience d'utilisation et suggestions
+- 📊 **Tests** : Reportez des résultats de performance ou des cas d'usage
 
-### Commandes de Développement
+### Maintenance
+Ce projet est maintenu par [@guiiireg](https://github.com/guiiireg). Tous les correctifs de bugs et implémentations de nouvelles fonctionnalités sont gérés par le mainteneur pour assurer la cohérence et la qualité du code.
 
-```bash
-# Vérification complète
-make test && make valgrind-test && make analyze
+Pour plus de détails, consultez [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
-# Préparation pour commit
-make format && make lint
-
-# Build de release
-make CONFIG=release all-libs
-```
+---
 
 ## 📝 Licence
 
